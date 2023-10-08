@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style4 {
+			border-width: 0px;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+
+	<div>
+		<div id="layer1" style="position: absolute; width: 475px; height: 205px; z-index: 1; left: 419px; top: 278px">
+			<table style="width: 100%" class="auto-style6">
+				<tr>
+					<td class="auto-style3" colspan="2">Statistics</td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 48px; width: 287px">Total
+						customers:</td>
+					<td class="auto-style6" style="height: 48px"><b th:text="${stats[1]}"></b></td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 38px; width: 287px">Total
+						employees:</td>
+					<td class="auto-style6" style="height: 38px"><b th:text="${stats[2]}"></b></td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 36px; width: 287px">Total
+						products:</td>
+					<td class="auto-style6" style="height: 36px"><b th:text="${stats[3]}"></b></td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 40px; width: 287px">Total
+						orders:</td>
+					<td class="auto-style6" style="height: 40px"><b th:text="${stats[4]}"></b></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

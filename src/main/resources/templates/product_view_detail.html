@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+
+	<div style="display: flex;">
+		<div style="width: 30%; display:inline-block; vertical-align: top; padding-right: 5px;">
+			<table style="width: 100%" class="auto-style6">
+				<tr>
+					<td class="auto-style3">Actions</td>
+				</tr>
+				<tr sec:authorize="hasRole('EMPLOYEE')">
+					<td style="height: 45px; ">
+						<a th:href="@{/Product/update/{id}(id=${product.productCode})}">
+							<button style="width: 100%;">Update</button>
+						</a>
+					</td>
+				</tr>
+				<tr sec:authorize="hasRole('EMPLOYEE')">
+					<td style="height: 45px; ">
+						<a th:href="@{/Product/delete/{id}(id=${product.productCode})}">
+							<button style="width: 100%;">Delete</button>
+						</a>
+					</td>
+				</tr>
+				<tr sec:authorize="hasRole('CUSTOMER')">
+					<td style="height: 45px; ">
+						<a th:href="@{/Order/addProductToPending/{id}(id=${product.productCode})}">
+							<button style="width: 100%;">Add to pending orders</button>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="width: 70%;  display:inline-block; vertical-align: top;padding-left: 5px;">
+			<table style="width: 100%" class="auto-style6">
+				<tr>
+					<td class="auto-style3" colspan="2"><span
+							th:text="'Product Detail - '+${product.productCode}"></span></td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Product Name:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.productName}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Product Line:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.line.productLine}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Product Scale:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.productScale}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Product Vendor:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.productVendor}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Product Description:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.productDescription}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Quantity:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.quantityInStock}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						Buy Price:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.buyPrice}"></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="height: 45px; width: 290px;">
+						MSRP:
+					</td>
+					<td style="height: 45px">
+						<span th:text="${product.MSRP}"></span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

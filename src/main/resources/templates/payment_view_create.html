@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+
+	<div style="display: flex;">
+		<div style="width: 10%; display:inline-block; vertical-align: top; padding-right: 5px;"
+			th:replace="user_options :: customer_options">
+		</div>
+		<div style="width: 90%;  display:inline-block; vertical-align: top;padding-left: 5px;">
+			<center><b th:if="${param.created}" th:text="'Created payment for customer: '+${authUser}+'('+${param.created}+')'"></b></center>
+			<table style="width: 100%" class="auto-style6">
+				<form th:action="@{/Payment/viewByCustomer}" th:method="post" th:object="${paymentTmpl}">
+					<tr>
+						<td class="auto-style3" colspan="4">Make payment</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							User:</td>
+						<td style="height: 14px">
+							<b><span th:text="${authUser}"></span></b>
+							<input type="hidden" th:field="*{customer.customerNumber}" />	
+						</td>
+						<td style="height: 14px">
+							Check number:</td>
+						<td style="height: 14px">
+							<input type="text" th:field="*{checkNumber}" />	
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							Payment date:</td>
+						<td style="height: 14px">
+							<b th:text="*{paymentDate}"></b>
+						</td>
+						<td style="height: 14px">
+							Amount:</td>
+						<td style="height: 14px">
+							<input type="text" th:field="*{amount}" />	
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							<button type="submit">Send</button></td>
+						</td>
+					</tr>
+				</form>
+			</table>
+			<table style="width: 100%" class="auto-style6">
+				<form th:action="@{/Payment/viewByCustomer}" method="get">
+					<tr>
+						<td class="auto-style3" colspan="4">Find</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							Check number:</td>
+						<td style="height: 14px">
+							<input type="text" name="checkNum" value="" /></td>
+						<td style="height: 14px">
+							Date from:</td>
+						<td style="height: 14px">
+							<input type="date" name="minDate" value="" />
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							To:</td>
+						<td style="height: 14px">
+							<input type="date" name="maxDate" value="" />
+						</td>
+						<td style="height: 14px">
+							Min amount:</td>
+						<td style="height: 14px">
+							<input type="number" name="minAmount" value="" /></td>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 14px">
+							Max amount:</td>
+						<td style="height: 14px">
+							<input type="number" name="maxAmount" value="" />
+						</td>
+						<td style="height: 14px">
+							<button type="submit">Submit</button></td>
+					</tr>
+				</form>
+			</table>
+			<table style="width: 100%" class="auto-style6">
+				<tr>
+					<td class="auto-style3" colspan="7">Transactions</td>
+				</tr>
+				<tr>
+					<th class="auto-style6" style="height: 14px">
+						Customer</th>
+					<th class="auto-style6" style="height: 14px">
+						Check number</th>
+					<th class="auto-style6" style="height: 14px">
+						Payment date</th>
+					<th class="auto-style6" style="height: 14px">
+						Amount</th>
+				</tr>
+				<tr th:each="payment:${payments}">
+					<td class="auto-style6" style="height: 48px" th:text="${payment.customer.customerNumber}+'-'+${payment.customer.customerName}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${payment.checkNumber}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${payment.paymentDate}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${payment.amount}">
+						&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 48px; " colspan="4">
+						<a th:each="page:${pagination}" th:href="@{/Payment/viewByCustomer(
+								checkNum=${checkNum},
+								minDate=${minDate},
+								maxDate=${maxDate},
+								minAmount=${minAmount},
+								maxAmount=${maxAmount},
+								page=${page},
+								resPerPage=${resPerPage})}" th:text="${page}+' | '"></a>
+						<b th:text="'(Total records: '+${totalRecords}+')'"></b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

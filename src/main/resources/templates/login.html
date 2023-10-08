@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+
+	<div>
+		<div id="layer1" style="position: absolute; width: 475px; height: 205px; z-index: 1; left: 386px; top: 246px">
+			<form th:action="@{/verifyLogin}" method="post">
+				<table style="width: 100%" class="auto-style6">
+					<tr>
+						<td class="auto-style3" colspan="2">Login</td>
+					</tr>
+					<tr>
+						<td style="height: 37px; width: 167px">Username:</td>
+						<td style="height: 37px">
+							<input name="username" style="width: 163px; height: 27px" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 36px; width: 167px">Password:</td>
+						<td style="height: 36px">
+							<input name="password" style="width: 264px; height: 27px" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 41px; width: 167px"></td>
+						<td style="height: 41px">
+							<input name="Submit1" type="submit" value="Submit">
+						</td>
+					</tr>
+				</table>
+			</form>
+			<center><b style="color:red" th:if="${param.error}">Error: login failed</b></center>
+		</div>
+	</div>
+
+</body>
+
+</html>

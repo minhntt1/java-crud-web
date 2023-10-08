@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+	<div th:if="${param.deleted}">
+		<center><b>Product deleted</b></center>
+	</div>
+	<div style="display: flex;">
+		<div style="width: 20%; display:inline-block; vertical-align: top; padding-right: 5px;">
+			<table style="width: 100%" class="auto-style6">
+				<form th:action="@{/Product/view}" method="get">
+					<tr>
+						<td class="auto-style3">Search</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Product code:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="productCode" type="text" style="width: 100%;" th:value="${productCode}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Product name:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="productName" type="text" style="width: 100%;" th:value="${productName}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Product line:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<select name="productLine" style="width: 100%;">
+								<option th:each="line:${productLineList}" th:value="${line.productLine}"
+									th:text="${line.productLine}" th:selected="${line.productLine == productLine}">
+								</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Product scale:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="productScale" type="text" style="width: 100%;" th:value="${productScale}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Vendor:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="productVendor" type="text" style="width: 100%;" th:value="${productVendor}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Description:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<textarea name="productDescription" style="width: 100%; height: 93px"
+								th:text="${productDescription}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Quantity:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="quantityInStock" type="text" style="width: 100%;"
+								th:value="${quantityInStock}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">Price:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="buyPrice" type="text" style="width: 100%;" th:value="${buyPrice}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">MSRP:</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="MSRP" type="text" style="width: 100%;" th:value="${MSRP}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 30px; ">
+							<input name="submit" type="submit" value="Send" style="width: 100%;">
+						</td>
+					</tr>
+				</form>
+			</table>
+		</div>
+		<div style="width: 80%;  display:inline-block; vertical-align: top;padding-left: 5px;">
+			<table style="width: 100%" class="auto-style6">
+				<tr>
+					<td class="auto-style3" colspan="6">Products</td>
+				</tr>
+				<tr>
+					<th class="auto-style6" style="height: 14px">
+						Code</th>
+					<th class="auto-style6" style="height: 14px">
+						Name</th>
+					<th class="auto-style6" style="height: 14px">
+						Vendor</th>
+					<th class="auto-style6" style="height: 14px">
+						Quantity</th>
+					<th class="auto-style6" style="height: 14px">
+						Price</th>
+					<th class="auto-style6" style="height: 14px">
+						&nbsp;</th>
+				</tr>
+				<tr th:each="prod:${prods}">
+					<td class="auto-style6" style="height: 48px" th:text="${prod.productCode}">
+					</td>
+					<td class="auto-style6" style="height: 48px" th:text="${prod.productName}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${prod.productVendor}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${prod.quantityInStock}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px" th:text="${prod.buyPrice}">
+						&nbsp;</td>
+					<td class="auto-style6" style="height: 48px">
+						<a th:href="@{/Product/view/{code}(code=${prod.productCode})}">Detail</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="auto-style6" style="height: 48px; " colspan="6">
+						<a th:each="page:${pagination}" th:href="@{/Product/view(
+								productCode=${productCode},
+								productName=${productName},
+								productLine=${productLine},
+								productScale=${productScale},
+								productVendor=${productVendor},
+								productDescription=${productDescription},
+								quantityInStock=${quantityInStock},
+								buyPrice=${buyPrice},
+								MSRP=${MSRP},
+								page=${page},
+								resPerPage=${resPerPage})}" th:text="${page}+' | '"></a>
+						<b th:text="'(Total records: '+${totalRecords}+')'"></b>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

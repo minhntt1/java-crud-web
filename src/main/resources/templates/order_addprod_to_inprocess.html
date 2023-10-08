@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="en-us" http-equiv="Content-Language">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Untitled 1</title>
+	<style type="text/css">
+		.auto-style1 {
+			text-align: right;
+			font-size: medium;
+		}
+
+		.auto-style2 {
+			font-size: medium;
+		}
+
+		.auto-style3 {
+			color: #FFFFFF;
+			border-style: solid;
+			border-width: 1px;
+			background-color: #216BD7;
+		}
+
+		.auto-style6 {
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.auto-style7 {
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin-left: 15px; margin-right: 15px" class="auto-style7">
+
+	<div th:replace="header.html :: header">
+	</div>
+	<hr>
+
+	<div style="display: flex;">
+		<div style="width: 30%; display:inline-block; vertical-align: top; padding-right: 5px;">
+			<form th:action="@{/Order/createOrder}" th:method="post" th:object="${orderTmpl}">
+				<table style="width: 100%" class="auto-style6">
+					<tr>
+						<td class="auto-style3" colspan="2"><span>Create new Order</span></td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							Expected date:
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							<input type="date" th:field="*{requiredDate}">
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							Comment:
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							<textarea style="height: 93px" th:field="*{comments}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px">
+							<input type="submit" value="Send">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div style="width: 70%;  display:inline-block; vertical-align: top;padding-left: 5px;">
+			<form th:action="@{/Order/addProductToPending/{prodCode}(prodCode=${product.productCode})}" th:method="post" th:object="${orderDetailTmpl}">
+				<table style="width: 100%" class="auto-style6">
+					<tr>
+						<td class="auto-style3" colspan="2"><span
+								th:text="'Add to pending - '+${product.productCode}"></span></td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							Product Name:
+						</td>
+						<td style="height: 45px">
+							<input type="hidden" th:field="*{product.productCode}" />
+							<b><span th:text="${product.productName}"></span></b>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							Quantity:
+						</td>
+						<td style="height: 45px">
+							<input type="text" th:field="*{quantityOrdered}"/>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+							Pending order:
+						</td>
+						<td style="height: 45px">
+							<input type="hidden" th:field="*{orderLineNumber}" th:value="'1'">
+							<select th:field="*{order.orderNumber}">
+								<option th:each="order:${porders}" th:value="${order.orderNumber}" th:text="${order.orderNumber}+' - Reqdate: '+${order.requiredDate}"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="height: 45px; width: 290px;">
+						</td>
+						<td style="height: 45px">
+							<input type="submit" value="Send">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>

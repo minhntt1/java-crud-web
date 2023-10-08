@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div style="width: 10%; display:inline-block; vertical-align: top; padding-right: 5px;" th:fragment="employee_options">
+		<table style="width: 100%" class="auto-style6">
+			<tr>
+				<td class="auto-style3">Actions</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Employee/updateProfile">
+						<button style="width: 100%;">Update Info</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Employee/updatePassword">
+						<button style="width: 100%;">Update Pass</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Employee/deleteAccount">
+						<button style="width: 100%;">Delete Account</button>
+					</a>
+				</td>
+			</tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Employee/accounts">
+						<button style="width: 100%;">Employee accounts</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Customer/accounts">
+						<button style="width: 100%;">Customer accounts</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Order/view">
+						<button style="width: 100%;">Orders</button>
+					</a>
+				</td>
+			</tr>
+						<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Office/views">
+						<button style="width: 100%;">Offices</button>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="width: 30%; display:inline-block; vertical-align: top; padding-right: 5px;" th:fragment="customer_options">
+		<table style="width: 100%" class="auto-style6">
+			<tr>
+				<td class="auto-style3">Actions</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Customer/updateProfile}">
+						<button style="width: 100%;">Update Info</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Customer/updatePassword}">
+						<button style="width: 100%;">Update Pass</button>
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Customer/deleteAccount}">
+						<button style="width: 100%;">Delete Account</button>
+					</a>
+				</td>
+			</tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Payment/viewByCustomer}">
+						<button style="width: 100%;">Payments</button>
+					</a>
+				</td>
+			</tr>
+			</tr>
+				<td style="height: 45px; ">
+					<a th:href="@{/Order/view}">
+						<button style="width: 100%;">Orders</button>
+					</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
